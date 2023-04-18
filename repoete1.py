@@ -1,8 +1,8 @@
-from funciones.funciones import * #importar primero carpeta luego con el . se selecciona el archivo y el import es para extraer las funciones deseadas
+from funciones.funciones import rellenar_tabla #importar primero carpeta luego con el . se selecciona el archivo y el import es para extraer las funciones deseadas
 import openpyxl
 import datetime
 
-"""variable creada para colocar el nomvre del archivo el cual se desea hacer el reporte"""
+"""variable creada para colocar el nombre del archivo el cual se desea hacer el reporte"""
 nombre_archivo = "Libro2" 
 nombre_archivo_final = 'Reporte'
 
@@ -14,7 +14,11 @@ hoja_reporte = libro.create_sheet('Reporte')
 """creando el diccionario donde se almacenaran los clientes y los saldos totales"""
 clientes ={}
 
-"""lista para crear la rapla del reporte"""
+"""crear diccionario de totales"""
+
+total_cliente = {}
+
+"""lista para crear la tabla del reporte"""
 lista_reporte = [ 
     'Clientes', 
     'Total',
@@ -28,16 +32,12 @@ for fila in range(2, hoja.max_row +1): #iterar sobre la base de datos para llena
     valor = hoja.cell(row=fila, column=3).value #seleccionar los valores  de mi lista de valores
     clientes.setdefault(cliente, 0) #ingresar las keys de mi diccionario de clientes
     
-
     clientes[cliente] += valor #sumar los valores encontrados de cada cliente e ingresarlo en el diccionario
 
 """llamar la funcion para rellenar la tabla"""
 rellenar_tabla(hoja_reporte, lista_reporte, clientes)
 
-# prueba = hoja_reporte.cell(row=2, column=2).value
-# print(prueba)
-
 """fecha del reporte"""
 fecha_actual = datetime.date.today()
 
-libro.save(f'{nombre_archivo_final} {fecha_actual}.xlsx')
+#libro.save(f'{nombre_archivo_final} {fecha_actual}.xlsx')
