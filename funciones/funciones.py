@@ -29,6 +29,8 @@ def rellenar_tabla (hoja : str, lista : list, diccionario):
     columna_clientes = buscar_columna(1, 'Clientes', hoja) #seleccionando la columna doonde se ingresan los nombres de los clientes
     num = 2 #creando una variable para ir aumentando el
     
+    # print(columna_clientes)
+
     """rellenar la columna de clientes en la hoja de Reporte"""
     for clave in diccionario.keys(): #iterar sobre las keys del diccionario
         persona = str(clave) #comvertir la key en un string
@@ -43,7 +45,5 @@ def rellenar_tabla (hoja : str, lista : list, diccionario):
         total = hoja.cell(row=fila, column=columna_total)
 
         total.value = diccionario[cliente]
-        
-        
 
 
